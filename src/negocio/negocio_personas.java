@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import dao.DAO_Personas;
 import entidad.Personas;
 
@@ -21,6 +23,11 @@ public class negocio_personas {
 		
 		dao_p.AgrerarUsuario(aux);
 		
+	}
+	
+	public List<Personas>readAll(){
+		List<Personas> listaPersonas = dao_p.Obtener_lista_usuarios();
+		return listaPersonas;
 	}
 	
 	

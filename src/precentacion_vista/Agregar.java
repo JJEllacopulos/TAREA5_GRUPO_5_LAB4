@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 
+import entidad.Personas;
 import negocio.negocio_personas;
 
 import javax.swing.JButton;
@@ -56,7 +57,7 @@ public class Agregar extends JPanel {
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Personas persona = new Personas();
 				negocio_personas ng_p = new negocio_personas();
 				
 				boolean aux = true;
@@ -82,12 +83,12 @@ public class Agregar extends JPanel {
 				
 				
 				if(aux) {
-					
+					ng_p.Agregar_persona(dni_textField.getText(), nombre_textField.getText(), apellido_textField.getText());
 					dni_textField.setText("");
 					nombre_textField.setText("");
 					apellido_textField.setText("");
 					
-					ng_p.Agregar_persona(dni_textField.getText(), nombre_textField.getText(), apellido_textField.getText());
+					
 					
 				}
 				else {
