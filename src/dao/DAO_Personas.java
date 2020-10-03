@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -12,16 +13,41 @@ public class DAO_Personas {
 	
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
-	private String pass = "ROOT";
+	private String pass = "";
 	private String dbName = "bdPersonas";
 	
 	public DAO_Personas() {
 		
 	}
 	
+	
+	
 	public int AgrerarUsuario (Personas personas) {
 		
 		String quety = "Insert into Personas (Dni, Nombre, Apellido) values ('" + personas.getDni() + "', '" + personas.getNombre() + "', '" + personas.getApellido() + "')";
+		Connection cn = null;
+		int filas=0;
+		
+		try{
+			
+			cn = DriverManager.getConnection(host+dbName, user, pass);
+			Statement st = cn.createStatement();
+			filas = st.executeUpdate(quety);
+			
+		}
+		catch(Exception e){
+			
+			e.printStackTrace();
+			
+		}
+		
+		return filas;
+		
+	}
+	
+public int EliminarPersona (String dni) {
+		
+		String quety = "Delete From Personas where Dni= "+dni;
 		Connection cn = null;
 		int filas=0;
 		
@@ -105,5 +131,6 @@ public class DAO_Personas {
 		return x;
 		
 	}
+	
 	
 }
