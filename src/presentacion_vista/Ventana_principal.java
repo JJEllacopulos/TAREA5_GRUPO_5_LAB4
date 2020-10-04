@@ -1,4 +1,4 @@
-package precentacion_vista;
+package presentacion_vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.controlador;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -15,24 +18,6 @@ import java.awt.event.ActionEvent;
 public class Ventana_principal extends JFrame {
 
 	private JPanel contentPane;
-
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ventana_principal frame = new Ventana_principal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Ventana_principal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 500);
@@ -50,10 +35,11 @@ public class Ventana_principal extends JFrame {
 				contentPane.removeAll();
 				
 				Agregar pan_agregar = new Agregar();
-				
 				contentPane.add(pan_agregar);
 				contentPane.repaint();
 				contentPane.revalidate();
+				controlador controlador =new controlador(pan_agregar);
+				
 				
 			}
 		});

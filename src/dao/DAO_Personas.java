@@ -1,53 +1,28 @@
 package dao;
+import dao_interface.dao_personas;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import entidad.Personas;
 
-public class DAO_Personas {
+public class DAO_Personas implements dao_personas{
 	
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
-	private String pass = "";
-	private String dbName = "bdPersonas";
+	private String pass = "ROOT";
+	private String dbName = "bdpersonas";
 	
 	public DAO_Personas() {
 		
 	}
 	
-	
-	
 	public int AgrerarUsuario (Personas personas) {
 		
-		String quety = "Insert into Personas (Dni, Nombre, Apellido) values ('" + personas.getDni() + "', '" + personas.getNombre() + "', '" + personas.getApellido() + "')";
-		Connection cn = null;
-		int filas=0;
-		
-		try{
-			
-			cn = DriverManager.getConnection(host+dbName, user, pass);
-			Statement st = cn.createStatement();
-			filas = st.executeUpdate(quety);
-			
-		}
-		catch(Exception e){
-			
-			e.printStackTrace();
-			
-		}
-		
-		return filas;
-		
-	}
-	
-public int EliminarPersona (String dni) {
-		
-		String quety = "Delete From Personas where Dni= "+dni;
+		String quety = "Insert into personas (Nombre, Apellido, Dni) values ('" + personas.getDni() + "', '" + personas.getNombre() + "', '" + personas.getApellido() + "')";
 		Connection cn = null;
 		int filas=0;
 		
@@ -79,12 +54,12 @@ public int EliminarPersona (String dni) {
 			
 			cn = DriverManager.getConnection(host+dbName, user, pass);
 			Statement st = cn.createStatement();
-			String query = "Select * from Personas where dni = '" + dni + "'";
+			String query = "Select * from personas where dni = '" + dni + "'";
 			ResultSet rs = st.executeQuery(query);
 			rs.next();
 			x.setNombre(rs.getString("Nombre"));
 			x.setApellido(rs.getString("Apellido"));
-			x.setDni(rs.getString("Dni"));
+			x.setDni(rs.getString("dni"));
 			
 			
 		}
@@ -98,7 +73,7 @@ public int EliminarPersona (String dni) {
 		
 	}
 	
-	public ArrayList<Personas> Obtener_lista_usuarios () {
+public ArrayList<Personas> Obtener_lista_usuarios () {
 		
 		ArrayList<Personas> x = new ArrayList<Personas>();
 		
@@ -108,7 +83,7 @@ public int EliminarPersona (String dni) {
 			
 			cn = DriverManager.getConnection(host+dbName, user, pass);
 			Statement st = cn.createStatement();
-			String query = "Select * from Personas";
+			String query = "Select * from personas";
 			ResultSet rs = st.executeQuery(query);
 			
 			while(rs.next()) {
@@ -116,7 +91,7 @@ public int EliminarPersona (String dni) {
 				Personas aux = new Personas();
 				aux.setNombre(rs.getString("Nombre"));
 				aux.setApellido(rs.getString("Apellido"));
-				aux.setDni(rs.getString("Dni"));
+				aux.setDni(rs.getString("dni"));
 				x.add(aux);
 				
 			}
@@ -132,5 +107,5 @@ public int EliminarPersona (String dni) {
 		
 	}
 	
-	
 }
+

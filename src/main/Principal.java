@@ -2,8 +2,7 @@ package main;
 
 import java.awt.EventQueue;
 
-
-import precentacion_vista.Ventana_principal;
+import presentacion_vista.Ventana_principal;
 
 public class Principal {
 	

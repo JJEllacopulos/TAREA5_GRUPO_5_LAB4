@@ -1,4 +1,4 @@
-package precentacion_vista;
+package presentacion_vista;
 
 import javax.swing.JPanel;
 import javax.swing.JList;

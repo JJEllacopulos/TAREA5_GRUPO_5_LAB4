@@ -1,4 +1,4 @@
-package precentacion_vista;
+package presentacion_vista;
 import entidad.Personas;
 import negocio.negocio_personas;
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ private String[] nombreColumnas = {"Nombre completo","Dni"};
 	
 	private void refrescarTabla()
 	{
-		this.personasEnTabla = (ArrayList<Personas>) pNeg.readAll();
+		this.personasEnTabla = (ArrayList<Personas>) pNeg.Obtener_lista_usuarios();
 		llenarTabla(this.personasEnTabla);
 	}
 

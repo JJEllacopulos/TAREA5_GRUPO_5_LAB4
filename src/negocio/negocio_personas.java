@@ -1,51 +1,35 @@
 package negocio;
-
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JOptionPane;
-
 import dao.DAO_Personas;
 import entidad.Personas;
+import negocio_interface.negocio_personas_interface;
 
-public class negocio_personas {
+public class negocio_personas implements negocio_personas_interface{
 	
 	private DAO_Personas dao_p = new DAO_Personas();
-	
-	public negocio_personas() {
-		
+
+	@Override
+	public int AgrerarUsuario(Personas personas) {
+		// TODO Auto-generated method stub
+		return dao_p.AgrerarUsuario(personas);
 	}
 
-	public void Agregar_persona(String dni, String nombre, String apellido) {
-		
-		Personas aux = new Personas();
-		
-		aux.setDni(dni);
-		aux.setNombre(nombre);
-		aux.setApellido(apellido);
-		
-		dao_p.AgrerarUsuario(aux);
-		
+	@Override
+	public Personas Obtener_usuario(String dni) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-public void EliminarPersona(String dni) {
-		
-		
-		int filas=dao_p.EliminarPersona(dni);
-		if (filas>0) {
-			JOptionPane.showMessageDialog(null, "Se elimino persona");
-			
-		}
-		else{
-			
-			JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR PERSONA");
-		}
-		
+
+	@Override
+	public ArrayList<Personas> Obtener_lista_usuarios() {
+		// TODO Auto-generated method stub
+		return dao_p.Obtener_lista_usuarios();
 	}
-	
-	public List<Personas>readAll(){
-		List<Personas> listaPersonas = dao_p.Obtener_lista_usuarios();
-		return listaPersonas;
-	}
-	
-	
 	
 }
+		
+
+	
+	
+
